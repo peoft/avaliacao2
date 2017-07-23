@@ -59,10 +59,20 @@ FOREIGN KEY ( modeloCarro_id )
 	REFERENCES ModeloCarro( id ),
 PRIMARY KEY ( id ) );
 
+CREATE TABLE ApoliceSeguro (
+id INT NOT NULL AUTO_INCREMENT,
+valorFranquia double NOT NULL,
+protecaoTerceiro boolean,
+protecaoCausasNaturais boolean,
+protecaoRoubo boolean,
+PRIMARY KEY ( id ) );
+
+
 CREATE TABLE Aluguel (
 id INT NOT NULL AUTO_INCREMENT,
 pessoa_id INT NOT NULL,
 carro_id INT NOT NULL,
+apoliceSeguro_id INT NOT NULL,
 dataPedido date NOT NULL,
 dataEntrega date NOT NULL,
 dataDevolucao date,
@@ -71,9 +81,6 @@ FOREIGN KEY ( pessoa_id )
 	REFERENCES Pessoa( id ),
 FOREIGN KEY ( carro_id )
 	REFERENCES Carro( id ),
+FOREIGN KEY ( apoliceSeguro_id )
+	REFERENCES ApoliceSeguro( id ),    
 PRIMARY KEY ( id ) );
-
-
-
-
-
