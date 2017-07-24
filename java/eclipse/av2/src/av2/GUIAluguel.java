@@ -98,55 +98,55 @@ public class GUIAluguel {
 	}
 
 	public void atualizaAlugueis(String nomeMotorista) {
-		try {
-			String[] columnNames = { aluguelColumnHeader.ID.toString(), aluguelColumnHeader.DataPedido.toString(), aluguelColumnHeader.DataEntrega.toString(), aluguelColumnHeader.DataDevolucao.toString(), aluguelColumnHeader.ValorTotal.toString() };
-	
-			PessoaDAO pessoaDAO = new PessoaDAO();
-			Motorista motorista = new Motorista(0, nomeMotorista, null, null, null, null);
-			Pessoa pessoa = motorista;
-			if (alugueis != null) {
-				DefaultTableModel dtm = (DefaultTableModel) alugueis.getModel();
-				if (dtm.getRowCount() > 0) {
-					dtm.setRowCount(0);
-				}
-			}
-			if (pessoaDAO.recuperarPeloNome(pessoa) == true) {
-				AluguelDAO aluguelDAO = new AluguelDAO();
-				ArrayList<Aluguel> alugueisList = aluguelDAO.recuperarAlugueis(pessoa);
-				if (alugueisList != null) {
-					Object[][] data = new Object[alugueisList.size()][5];
-					Object[] element = alugueisList.toArray();
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-					for (int i = 0; i < alugueisList.size(); i++) {
-						Aluguel aluguel = (Aluguel) element[i];
-						data[i][0] = String.valueOf(aluguel.getId());
-						data[i][1] = dateFormat.format(aluguel.getDataPedido().getTime());
-						data[i][2] = dateFormat.format(aluguel.getDataEntrega());
-						data[i][3] = dateFormat.format(aluguel.getDataDevolucao());
-						data[i][4] = aluguel.getValorTotal();
-					}
-			
-					DefaultTableModel model = new DefaultTableModel(data, columnNames);
-					alugueis = new JTable(model) {
-					     private static final long serialVersionUID = 1L;
-
-					        public boolean isCellEditable(int row, int column) {                
-					                return false;               
-					        };						
-					}; 					
-					
-					listSelectionModel = alugueis.getSelectionModel();
-			        listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
-			        alugueis.setSelectionModel(listSelectionModel);
-					alugueis.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
-					scrollAlugueis.setViewportView(alugueis);
-				} else {
-					idAluguelSelecionado = 0;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			String[] columnNames = { aluguelColumnHeader.ID.toString(), aluguelColumnHeader.DataPedido.toString(), aluguelColumnHeader.DataEntrega.toString(), aluguelColumnHeader.DataDevolucao.toString(), aluguelColumnHeader.ValorTotal.toString() };
+//	
+//			PessoaDAO pessoaDAO = new PessoaDAO();
+//			Motorista motorista = new Motorista(0, nomeMotorista, null, null, null, null);
+//			Pessoa pessoa = motorista;
+//			if (alugueis != null) {
+//				DefaultTableModel dtm = (DefaultTableModel) alugueis.getModel();
+//				if (dtm.getRowCount() > 0) {
+//					dtm.setRowCount(0);
+//				}
+//			}
+//			if (pessoaDAO.recuperarPeloNome(pessoa) == true) {
+//				AluguelDAO aluguelDAO = new AluguelDAO();
+//				ArrayList<Aluguel> alugueisList = aluguelDAO.recuperarAlugueis(pessoa);
+//				if (alugueisList != null) {
+//					Object[][] data = new Object[alugueisList.size()][5];
+//					Object[] element = alugueisList.toArray();
+//					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//					for (int i = 0; i < alugueisList.size(); i++) {
+//						Aluguel aluguel = (Aluguel) element[i];
+//						data[i][0] = String.valueOf(aluguel.getId());
+//						data[i][1] = dateFormat.format(aluguel.getDataPedido().getTime());
+//						data[i][2] = dateFormat.format(aluguel.getDataEntrega());
+//						data[i][3] = dateFormat.format(aluguel.getDataDevolucao());
+//						data[i][4] = aluguel.getValorTotal();
+//					}
+//			
+//					DefaultTableModel model = new DefaultTableModel(data, columnNames);
+//					alugueis = new JTable(model) {
+//					     private static final long serialVersionUID = 1L;
+//
+//					        public boolean isCellEditable(int row, int column) {                
+//					                return false;               
+//					        };						
+//					}; 					
+//					
+//					listSelectionModel = alugueis.getSelectionModel();
+//			        listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+//			        alugueis.setSelectionModel(listSelectionModel);
+//					alugueis.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+//					scrollAlugueis.setViewportView(alugueis);
+//				} else {
+//					idAluguelSelecionado = 0;
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	class SharedListSelectionHandler implements ListSelectionListener {
@@ -207,33 +207,33 @@ public class GUIAluguel {
 		JButton criar = new JButton("Criar");
 		criar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String nome = motoristas.getSelectedValue().toString();
-				PessoaDAO pessoaDAO = new PessoaDAO();
-				if (pessoaDAO != null) {
-					Pessoa motorista = new Motorista(0, nome, null, null, null, null);
-					if (pessoaDAO.recuperarPeloNome(motorista) == true) {
-						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						Date dtEntrega, dtDeVolucao;
-						Calendar dtPedido = Calendar.getInstance();
-						try {
-							dtPedido.setTime(dateFormat.parse(dataPedido.getText()));
-							dtEntrega = dateFormat.parse(dataEntrega.getText());
-							dtDeVolucao = dateFormat.parse(dataDevolucao.getText());
-							BigDecimal vlTotal = new BigDecimal(valorTotal.getText());
-							Aluguel aluguel = new Aluguel(motorista.getId(), dtPedido, dtEntrega, dtDeVolucao, vlTotal);
-							if (aluguel != null) {
-								AluguelDAO aluguelDAO = new AluguelDAO();
-								if (aluguelDAO.criar(aluguel) == true) {
-									cleanFields();
-									atualizaAlugueis(motoristaSelecionado);
-								}
-							}
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				}
+//				String nome = motoristas.getSelectedValue().toString();
+//				PessoaDAO pessoaDAO = new PessoaDAO();
+//				if (pessoaDAO != null) {
+//					Pessoa motorista = new Motorista(0, nome, null, null, null, null);
+//					if (pessoaDAO.recuperarPeloNome(motorista) == true) {
+//						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//						Date dtEntrega, dtDeVolucao;
+//						Calendar dtPedido = Calendar.getInstance();
+//						try {
+//							dtPedido.setTime(dateFormat.parse(dataPedido.getText()));
+//							dtEntrega = dateFormat.parse(dataEntrega.getText());
+//							dtDeVolucao = dateFormat.parse(dataDevolucao.getText());
+//							BigDecimal vlTotal = new BigDecimal(valorTotal.getText());
+//							Aluguel aluguel = new Aluguel(motorista.getId(), dtPedido, dtEntrega, dtDeVolucao, vlTotal);
+//							if (aluguel != null) {
+//								AluguelDAO aluguelDAO = new AluguelDAO();
+//								if (aluguelDAO.criar(aluguel) == true) {
+//									cleanFields();
+//									atualizaAlugueis(motoristaSelecionado);
+//								}
+//							}
+//						} catch (ParseException e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					}
+//				}
 
 			}
 		});
@@ -242,25 +242,25 @@ public class GUIAluguel {
 		atualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idAluguelSelecionado != 0) {
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-					Date dtEntrega, dtDeVolucao;
-					Calendar dtPedido = Calendar.getInstance();
-					try {
-						dtPedido.setTime(dateFormat.parse(dataPedido.getText()));
-						dtEntrega = dateFormat.parse(dataEntrega.getText());
-						dtDeVolucao = dateFormat.parse(dataDevolucao.getText());
-						BigDecimal vlTotal = new BigDecimal(valorTotal.getText());
-						Aluguel aluguel = new Aluguel(idAluguelSelecionado, dtPedido, dtEntrega, dtDeVolucao, vlTotal);
-						if (aluguel != null) {
-							AluguelDAO aluguelDAO = new AluguelDAO();
-							if (aluguelDAO.atualizar(aluguel) == true) {
-								atualizaAlugueis(motoristaSelecionado);								
-							}
-						}
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+//					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//					Date dtEntrega, dtDeVolucao;
+//					Calendar dtPedido = Calendar.getInstance();
+//					try {
+//						dtPedido.setTime(dateFormat.parse(dataPedido.getText()));
+//						dtEntrega = dateFormat.parse(dataEntrega.getText());
+//						dtDeVolucao = dateFormat.parse(dataDevolucao.getText());
+//						BigDecimal vlTotal = new BigDecimal(valorTotal.getText());
+//						Aluguel aluguel = new Aluguel(idAluguelSelecionado, dtPedido, dtEntrega, dtDeVolucao, vlTotal);
+//						if (aluguel != null) {
+//							AluguelDAO aluguelDAO = new AluguelDAO();
+//							if (aluguelDAO.atualizar(aluguel) == true) {
+//								atualizaAlugueis(motoristaSelecionado);								
+//							}
+//						}
+//					} catch (ParseException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
 				}
 			}
 		});
@@ -269,19 +269,19 @@ public class GUIAluguel {
 		deletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (idAluguelSelecionado != 0) {
-					try {
-						Aluguel aluguel = new Aluguel(idAluguelSelecionado, null, null, null, null);
-						if (aluguel != null) {
-							AluguelDAO aluguelDAO = new AluguelDAO();
-							if (aluguelDAO.deletar(aluguel) == true) {
-								cleanFields();
-								atualizaAlugueis(motoristaSelecionado);								
-							}
-						}
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+//					try {
+//						Aluguel aluguel = new Aluguel(idAluguelSelecionado, null, null, null, null);
+//						if (aluguel != null) {
+//							AluguelDAO aluguelDAO = new AluguelDAO();
+//							if (aluguelDAO.deletar(aluguel) == true) {
+//								cleanFields();
+//								atualizaAlugueis(motoristaSelecionado);								
+//							}
+//						}
+//					} catch (Exception e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
 				}
 			}
 		});
