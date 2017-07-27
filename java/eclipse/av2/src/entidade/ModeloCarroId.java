@@ -1,17 +1,20 @@
 package entidade;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class ModeloCarroId {
+public class ModeloCarroId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Fabricante fabricante;
 	private String descricao;
 
 	public ModeloCarroId() {
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -23,13 +26,16 @@ public class ModeloCarroId {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "modeloCarroId")
 	public Fabricante getFabricante() {
 		return fabricante;
 	}
 
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
+	}
 
 	@Override
 	public int hashCode() {
@@ -61,6 +67,5 @@ public class ModeloCarroId {
 			return false;
 		return true;
 	}
-
 
 }

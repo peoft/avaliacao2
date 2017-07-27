@@ -14,10 +14,15 @@ public class Acessorio {
 	private String descricao;
 	private Set<Carro> carros = new HashSet<>();
 
+	public void setCarros(Set<Carro> carros) {
+		this.carros = carros;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((carros == null) ? 0 : carros.hashCode());
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + id;
 		return result;
@@ -32,6 +37,11 @@ public class Acessorio {
 		if (getClass() != obj.getClass())
 			return false;
 		Acessorio other = (Acessorio) obj;
+		if (carros == null) {
+			if (other.carros != null)
+				return false;
+		} else if (!carros.equals(other.carros))
+			return false;
 		if (descricao == null) {
 			if (other.descricao != null)
 				return false;

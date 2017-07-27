@@ -1,9 +1,11 @@
 package entidade;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class AluguelId {
+public class AluguelId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int pessoaId;
 	private int carroId;

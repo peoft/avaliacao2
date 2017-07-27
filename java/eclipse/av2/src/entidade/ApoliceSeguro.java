@@ -16,6 +16,12 @@ public class ApoliceSeguro {
 	private boolean protecaoCausasNaturais;
 	private boolean protecaoRoubo;
 	private Aluguel aluguel;
+	
+	
+	public void setAluguel(Aluguel aluguel) {
+		this.aluguel = aluguel;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

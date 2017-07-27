@@ -14,11 +14,16 @@ public class Fabricante {
 	private String nome;
 	private List<ModeloCarro> modelos;
 
+	public void setModelos(List<ModeloCarro> modelos) {
+		this.modelos = modelos;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
+		result = prime * result + ((modelos == null) ? 0 : modelos.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
@@ -33,6 +38,11 @@ public class Fabricante {
 			return false;
 		Fabricante other = (Fabricante) obj;
 		if (id != other.id)
+			return false;
+		if (modelos == null) {
+			if (other.modelos != null)
+				return false;
+		} else if (!modelos.equals(other.modelos))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
@@ -71,7 +81,7 @@ public class Fabricante {
 		this.nome = nome;
 	}
 
-	@OneToMany(mappedBy = "fabricante")
+	@OneToMany(mappedBy = "fabricanteId")
 	public List<ModeloCarro> getModelos() {
 		return modelos;
 	}
