@@ -13,11 +13,9 @@ public class AcessorioDAO implements IAcessorioDAO {
 		EntityManager manager = JPAUtil.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
-
-		
+		manager.persist(acessorio);
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -44,7 +42,6 @@ public class AcessorioDAO implements IAcessorioDAO {
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -57,7 +54,6 @@ public class AcessorioDAO implements IAcessorioDAO {
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 

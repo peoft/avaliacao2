@@ -17,7 +17,6 @@ public class FabricanteDAO implements IFabricanteDAO {
 		manager.persist(fabricante);
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -30,7 +29,6 @@ public class FabricanteDAO implements IFabricanteDAO {
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -42,7 +40,6 @@ public class FabricanteDAO implements IFabricanteDAO {
 				
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -54,8 +51,7 @@ public class FabricanteDAO implements IFabricanteDAO {
 
 		
 		tx.commit();
-		manager.close();
-//		JPAUtil.close();		
+		manager.close();		
 		return false;
 	}
 

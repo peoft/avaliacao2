@@ -14,10 +14,10 @@ public class AluguelDAO implements IAluguelDAO{
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
+		manager.persist(aluguel);
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -30,7 +30,6 @@ public class AluguelDAO implements IAluguelDAO{
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -43,7 +42,6 @@ public class AluguelDAO implements IAluguelDAO{
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -56,7 +54,6 @@ public class AluguelDAO implements IAluguelDAO{
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 

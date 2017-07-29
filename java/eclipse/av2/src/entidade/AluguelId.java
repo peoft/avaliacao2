@@ -2,14 +2,20 @@ package entidade;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-@Embeddable
+
 public class AluguelId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int pessoaId;
-	private int carroId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private int apoliceSeguroId;
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public AluguelId() {
 	}
 	
@@ -19,11 +25,11 @@ public class AluguelId implements Serializable {
 	public void setPessoaId(int pessoaId) {
 		this.pessoaId = pessoaId;
 	}
-	public int getCarroId() {
-		return carroId;
+	public int getId() {
+		return id;
 	}
-	public void setCarroId(int carroId) {
-		this.carroId = carroId;
+	public void setCarroId(int id) {
+		this.id = id;
 	}
 	public int getApoliceSeguroId() {
 		return apoliceSeguroId;
@@ -34,15 +40,17 @@ public class AluguelId implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + apoliceSeguroId;
-		result = prime * result + carroId;
+		result = prime * result + id;
 		result = prime * result + pessoaId;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,7 +62,7 @@ public class AluguelId implements Serializable {
 		AluguelId other = (AluguelId) obj;
 		if (apoliceSeguroId != other.apoliceSeguroId)
 			return false;
-		if (carroId != other.carroId)
+		if (id != other.id)
 			return false;
 		if (pessoaId != other.pessoaId)
 			return false;

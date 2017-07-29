@@ -6,22 +6,40 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
+@IdClass(CarroId.class)
 public class Carro {
-	private CarroId id;
+	@Id	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;	
+	@Id
+	private String placa;
+	@Id
+	private String chassi;
 	private int acessorioId;
+	@ManyToOne(optional = false)
+	@JoinColumns({ @JoinColumn(name = "ModeloCarroDescricao"), @JoinColumn(name = "ModeloCarroId"),  @JoinColumn(name = "ModeloCarroFabricanteId") })	
 	private ModeloCarro modeloCarro;
+	@Column(length = 50, nullable = false)
 	private String cor;
+	@Column(precision = 10, scale = 2, nullable = false)
 	private BigDecimal valorDiaria;
+	@OneToMany(mappedBy = "carro")
 	List<Aluguel> alugueis;
+	@ManyToMany
+	@JoinTable(joinColumns = {@JoinColumn(name = "carroChassi"), @JoinColumn(name = "carroId"), @JoinColumn(name = "carroPlaca")}, inverseJoinColumns = @JoinColumn(name = "acessorioId"))
 	private Set<Acessorio> acessorios = new HashSet<>();
 
 	public void setAlugueis(List<Aluguel> alugueis) {
@@ -32,53 +50,49 @@ public class Carro {
 		this.modeloCarro = modeloCarro;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Carro other = (Carro) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
 
 	public Carro() {
 
 	}
 
-	public Carro(CarroId id, int acessorioId, int modeloCarroId, String placa, String chassi, String cor,
-			BigDecimal valorDiaria) {
+	public Carro(int id, int acessorioId, ModeloCarro modeloCarro, String placa, String chassi, String cor,
+			BigDecimal valorDiaria, List<Aluguel> alugueis, Set<Acessorio> acessorios) {
 		super();
 		this.id = id;
 		this.acessorioId = acessorioId;
+		this.modeloCarro = modeloCarro;
+		this.placa = placa;
+		this.chassi = chassi;		
 		this.cor = cor;
 		this.valorDiaria = valorDiaria;
+		this.alugueis = alugueis;
+		this.acessorios = acessorios;
+	}	
+	
+	public String getPlaca() {
+		return placa;
 	}
 
-	@EmbeddedId
-	public CarroId getId() {
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public String getChassi() {
+		return chassi;
+	}
+
+	public void setChassi(String chassi) {
+		this.chassi = chassi;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(CarroId id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public int getAcessorioId() {
 		return acessorioId;
 	}
@@ -86,8 +100,6 @@ public class Carro {
 	public void setAcessorioId(int acessorioId) {
 		this.acessorioId = acessorioId;
 	}
-
-	@Column(length = 50, nullable = false)
 	public String getCor() {
 		return cor;
 	}
@@ -95,8 +107,7 @@ public class Carro {
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
-
-	@Column(precision = 10, scale = 2, nullable = false)
+	
 	public BigDecimal getValorDiaria() {
 		return valorDiaria;
 	}
@@ -104,19 +115,15 @@ public class Carro {
 	public void setValorDiaria(BigDecimal valorDiaria) {
 		this.valorDiaria = valorDiaria;
 	}
-
-	@OneToMany(mappedBy = "carro")
+	
 	public List<Aluguel> getAlugueis() {
 		return alugueis;
 	}
 
-	@ManyToOne(optional = false)
-	@JoinColumns({ @JoinColumn(name = "modeloCarro_Id"), @JoinColumn(name = "fabricante_Id") })
 	public ModeloCarro getModeloCarro() {
 		return modeloCarro;
 	}
 
-	@ManyToMany
 	public Set<Acessorio> getAcessorios() {
 		return acessorios;
 	}

@@ -17,7 +17,6 @@ public class ModeloCarroDAO implements IModeloCarroDAO {
 		manager.persist(modeloCarro);
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -29,8 +28,7 @@ public class ModeloCarroDAO implements IModeloCarroDAO {
 
 		
 		tx.commit();
-		manager.close();
-		//JPAUtil.close();		
+		manager.close();		
 		return false;
 	}
 
@@ -43,7 +41,6 @@ public class ModeloCarroDAO implements IModeloCarroDAO {
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 
@@ -56,7 +53,6 @@ public class ModeloCarroDAO implements IModeloCarroDAO {
 		
 		tx.commit();
 		manager.close();
-		//JPAUtil.close();		
 		return false;
 	}
 

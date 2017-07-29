@@ -5,17 +5,52 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Fabricante {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(length = 50, nullable = false)
 	private String nome;
+	@OneToMany(mappedBy = "fabricante")	
 	private List<ModeloCarro> modelos;
 
 	public void setModelos(List<ModeloCarro> modelos) {
 		this.modelos = modelos;
+	}
+
+	public Fabricante() {
+
+	}
+
+	public Fabricante(int id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public List<ModeloCarro> getModelos() {
+		return modelos;
 	}
 
 	@Override
@@ -51,39 +86,4 @@ public class Fabricante {
 			return false;
 		return true;
 	}
-
-	public Fabricante() {
-
-	}
-
-	public Fabricante(int id, String nome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-	}
-
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	@Column(precision = 50, nullable = false)
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	@OneToMany(mappedBy = "fabricanteId")
-	public List<ModeloCarro> getModelos() {
-		return modelos;
-	}
-
 }
