@@ -30,7 +30,6 @@ public class Aluguel {
 	@ManyToOne(optional = false)
 	@JoinColumns({
 	@JoinColumn(name = "carroChassi"),
-	@JoinColumn(name = "carroId"),	
 	@JoinColumn(name = "carroPlaca")	
 	})	
 	private Carro carro;

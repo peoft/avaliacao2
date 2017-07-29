@@ -3,43 +3,33 @@ package entidade;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class CarroId implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int id;
 	@Column(length = 10, nullable = false)	
 	private String placa;
 	@Column(length = 30, nullable = false)
 	private String chassi;
 
-	public CarroId() {
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	
-	@Column(length = 10, nullable = false)
-	public String getPlaca() {
-		return placa;
-	}
-
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
 
-	@Column(length = 30, nullable = false)
-	public String getChassi() {
-		return chassi;
-	}
-
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
+	}
+
+	public CarroId() {
+	}
+	
+	public String getPlaca() {
+		return placa;
+	}
+
+	public String getChassi() {
+		return chassi;
 	}
 
 	@Override
@@ -47,7 +37,6 @@ public class CarroId implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((chassi == null) ? 0 : chassi.hashCode());
-		result = prime * result + id;
 		result = prime * result + ((placa == null) ? 0 : placa.hashCode());
 		return result;
 	}
@@ -65,8 +54,6 @@ public class CarroId implements Serializable {
 			if (other.chassi != null)
 				return false;
 		} else if (!chassi.equals(other.chassi))
-			return false;
-		if (id != other.id)
 			return false;
 		if (placa == null) {
 			if (other.placa != null)

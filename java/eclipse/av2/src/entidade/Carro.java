@@ -6,11 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
@@ -19,15 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@IdClass(CarroId.class)
 public class Carro {
-	@Id	
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;	
-	@Id
-	private String placa;
-	@Id
-	private String chassi;
+	@EmbeddedId
+	private CarroId carroId;
 	private int acessorioId;
 	@ManyToOne(optional = false)
 	@JoinColumns({ @JoinColumn(name = "ModeloCarroDescricao"), @JoinColumn(name = "ModeloCarroId"),  @JoinColumn(name = "ModeloCarroFabricanteId") })	
@@ -39,8 +30,16 @@ public class Carro {
 	@OneToMany(mappedBy = "carro")
 	List<Aluguel> alugueis;
 	@ManyToMany
-	@JoinTable(joinColumns = {@JoinColumn(name = "carroChassi"), @JoinColumn(name = "carroId"), @JoinColumn(name = "carroPlaca")}, inverseJoinColumns = @JoinColumn(name = "acessorioId"))
+	@JoinTable(joinColumns = {@JoinColumn(name = "carroChassi"), @JoinColumn(name = "carroPlaca")}, inverseJoinColumns = @JoinColumn(name = "acessorioId"))
 	private Set<Acessorio> acessorios = new HashSet<>();
+
+	public CarroId getCarroId() {
+		return carroId;
+	}
+
+	public void setCarroId(CarroId carroId) {
+		this.carroId = carroId;
+	}
 
 	public void setAlugueis(List<Aluguel> alugueis) {
 		this.alugueis = alugueis;
@@ -55,44 +54,18 @@ public class Carro {
 
 	}
 
-	public Carro(int id, int acessorioId, ModeloCarro modeloCarro, String placa, String chassi, String cor,
+	public Carro(CarroId carroId, int acessorioId, ModeloCarro modeloCarro, String placa, String chassi, String cor,
 			BigDecimal valorDiaria, List<Aluguel> alugueis, Set<Acessorio> acessorios) {
 		super();
-		this.id = id;
+		this.carroId = carroId;
 		this.acessorioId = acessorioId;
 		this.modeloCarro = modeloCarro;
-		this.placa = placa;
-		this.chassi = chassi;		
 		this.cor = cor;
 		this.valorDiaria = valorDiaria;
 		this.alugueis = alugueis;
 		this.acessorios = acessorios;
 	}	
-	
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-
-	public String getChassi() {
-		return chassi;
-	}
-
-	public void setChassi(String chassi) {
-		this.chassi = chassi;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
+		
 	public int getAcessorioId() {
 		return acessorioId;
 	}

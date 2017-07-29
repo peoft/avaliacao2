@@ -49,8 +49,7 @@ public class ValidarCarro {
 			carro.setCor("pRETO");
 			carro.setValorDiaria(new BigDecimal(25300));
 			carro.setAcessorioId(acessorio.getId());
-			carro.setChassi(carroId.getChassi());
-			carro.setPlaca(carroId.getPlaca());
+			carro.setCarroId(carroId);
 			carroDAO.criar(carro);
 			JPAUtil.close();
 		} catch (Exception e) {

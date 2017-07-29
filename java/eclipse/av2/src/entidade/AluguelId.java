@@ -28,9 +28,6 @@ public class AluguelId implements Serializable {
 	public int getId() {
 		return id;
 	}
-	public void setCarroId(int id) {
-		this.id = id;
-	}
 	public int getApoliceSeguroId() {
 		return apoliceSeguroId;
 	}

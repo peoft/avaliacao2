@@ -5,7 +5,7 @@ import entidade.CarroId;
 
 public interface ICarroDAO {
 	boolean criar(Carro carro); 
-	Carro recuperar(CarroId carroId);
+	boolean recuperar(Carro carro);
 	boolean atualizar(Carro carro);
 	boolean deletar(Carro carro);	
 }

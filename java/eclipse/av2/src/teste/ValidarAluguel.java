@@ -36,19 +36,13 @@ public class ValidarAluguel {
 			CarroId carroId = new CarroId();
 			carroId.setChassi("9G3C3DFDSFDSFSDF323");
 			carroId.setPlaca("MKL 3230");
-			carro = carroDAO.recuperar(carroId);
-			if (carro != null) {
-				carro.setChassi(carroId.getChassi());
-				carro.setPlaca(carroId.getPlaca());
-				carro.setId(carroId.getId());
-				
-				
+			carro.setCarroId(carroId);			
+			if (carroDAO.recuperar(carro) == true) {
 				AluguelDAO aluguelDAO = new AluguelDAO();
 				Aluguel aluguel = new Aluguel();
 				AluguelId aluguelId = new AluguelId();
 				
 				aluguelId.setApoliceSeguroId(apoliceSeguro.getId());
-				aluguelId.setCarroId(carro.getId());
 				aluguelId.setPessoaId(1);
 				
 				aluguel.setApoliceSeguro(apoliceSeguro);
