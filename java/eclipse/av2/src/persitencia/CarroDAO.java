@@ -22,16 +22,16 @@ public class CarroDAO implements ICarroDAO{
 	}
 	
 	@Override
-	public boolean recuperar(Carro carro) {
+	public Carro recuperar(CarroId carroId) {
 		EntityManager manager = JPAUtil.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
-		manager.find(carro.getClass(), carro.getCarroId());
+		Carro result = manager.find((new Carro()).getClass(), carroId);
 		
 		tx.commit();
 		manager.close();
-		return false;
+		return result;
 	}
 	
 	@Override
