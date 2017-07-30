@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 @Entity
 public class Aluguel {
 	@EmbeddedId
@@ -31,7 +32,6 @@ public class Aluguel {
 	private Date dataDevolucao;
 	@Column(precision = 10, scale = 2, nullable = false)
 	private BigDecimal valorTotal;
-	
 
 	public AluguelId getId() {
 		return id;

@@ -3,13 +3,14 @@ package entidade;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class ModeloCarroId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int fabricanteId;
 	@Column(length = 50, nullable = false)
 	private String descricao;
-	private int id;
 
 	public int getFabricanteId() {
 		return fabricanteId;
@@ -17,14 +18,6 @@ public class ModeloCarroId implements Serializable {
 
 	public void setFabricanteId(int fabricanteId) {
 		this.fabricanteId = fabricanteId;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public ModeloCarroId() {
@@ -48,7 +41,6 @@ public class ModeloCarroId implements Serializable {
 		int result = 1;
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + fabricanteId;
-		result = prime * result + id;
 		return result;
 	}
 
@@ -67,8 +59,6 @@ public class ModeloCarroId implements Serializable {
 		} else if (!descricao.equals(other.descricao))
 			return false;
 		if (fabricanteId != other.fabricanteId)
-			return false;
-		if (id != other.id)
 			return false;
 		return true;
 	}

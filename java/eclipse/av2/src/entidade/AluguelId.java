@@ -11,22 +11,23 @@ import javax.persistence.TemporalType;
 @Embeddable
 public class AluguelId implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int pessoaId;
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)	
 	private Calendar dataPedido;
+	private int pessoaId;
 	
 	public AluguelId() {
 	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}	
 	
 	public int getPessoaId() {
 		return pessoaId;
 	}
 	public void setPessoaId(int pessoaId) {
 		this.pessoaId = pessoaId;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 	
 	public Calendar getDataPedido() {

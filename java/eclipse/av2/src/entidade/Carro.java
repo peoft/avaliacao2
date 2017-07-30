@@ -21,7 +21,7 @@ public class Carro {
 	private CarroId carroId;
 	private int acessorioId;
 	@ManyToOne(optional = false)
-	@JoinColumns({ @JoinColumn(name = "ModeloCarroDescricao"), @JoinColumn(name = "ModeloCarroId"),  @JoinColumn(name = "ModeloCarroFabricanteId") })	
+	@JoinColumns({ @JoinColumn(name = "ModeloCarroDescricao"),  @JoinColumn(name = "ModeloCarroFabricanteId") })	
 	private ModeloCarro modeloCarro;
 	@Column(length = 50, nullable = false)
 	private String cor;

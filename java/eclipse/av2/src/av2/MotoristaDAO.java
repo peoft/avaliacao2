@@ -101,6 +101,36 @@ public class MotoristaDAO implements IMotoristaDAO {
 		return ret;
 	}
 	
+	public boolean recuperarPeloId(Motorista motorista) {
+		boolean ret = false;
+		String queryString = "SELECT * FROM motorista where pessoa_id = ?";
+		try (
+			Connection connection = getConnection();
+			PreparedStatement ptmt = connection.prepareStatement(queryString);
+			) {
+			ptmt.setInt(1, motorista.getId());
+			try (ResultSet resultSet = ptmt.executeQuery()){			
+				while (resultSet.next()) {
+					System.out.println("Id" + resultSet.getInt("pessoa_id"));
+					ret = true;
+				}				
+			} catch (SQLTimeoutException e) {
+				System.out.println("Erro ao recuperar dados do motorista = " + e.getMessage());
+				e.printStackTrace();
+			} catch (SQLException e) {
+				System.out.println("Erro ao recuperar dados do motorista = " + e.getMessage());
+				e.printStackTrace();				
+			}				
+		} catch (SQLException e) {
+			System.out.println("Erro ao recuperar dados do motorista = " + e.getMessage());
+			e.printStackTrace();			
+		} catch (Exception e) {
+			System.out.println("Erro ao recuperar dados motorista = " + e.getMessage());
+			e.printStackTrace();			
+		}
+		return ret;		
+	}
+	
 	public ArrayList<Motorista> recuperarTodos() {		
 		// TODO Auto-generated method stub
 	String queryString = "SELECT pessoa_id FROM motorista";

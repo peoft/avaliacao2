@@ -31,8 +31,8 @@ public class ValidarCarro {
 			modeloCarroId.setFabricanteId(fabricante.getId());
 			modeloCarroId.setDescricao("HATCHBACK2");
 			
+			modeloCarro.setId(modeloCarroId);
 			modeloCarro.setFabricante(fabricante);
-			modeloCarro.setDescricao(modeloCarroId.getDescricao());
 			modeloCarroDAO.criar(modeloCarro);
 
 			AcessorioDAO acessorioDAO = new AcessorioDAO();
