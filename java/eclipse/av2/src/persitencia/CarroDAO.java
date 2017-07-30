@@ -3,7 +3,7 @@ package persitencia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import av2.JPAUtil;
+import av2.EntityManagerFactoryWrapper;
 import entidade.Carro;
 import entidade.CarroId;
 
@@ -11,7 +11,7 @@ public class CarroDAO implements ICarroDAO{
 
 	@Override
 	public boolean criar(Carro carro) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -23,7 +23,7 @@ public class CarroDAO implements ICarroDAO{
 	
 	@Override
 	public Carro recuperar(CarroId carroId) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -36,7 +36,7 @@ public class CarroDAO implements ICarroDAO{
 	
 	@Override
 	public boolean atualizar(Carro carro) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -48,7 +48,7 @@ public class CarroDAO implements ICarroDAO{
 
 	@Override
 	public boolean deletar(Carro carro) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 

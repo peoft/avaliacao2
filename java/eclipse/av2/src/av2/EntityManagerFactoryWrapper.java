@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class JPAUtil {
+public class EntityManagerFactoryWrapper {
 	private static EntityManagerFactory factory;
 	static {
 		factory = Persistence.createEntityManagerFactory("AluguelCarrosPU");
@@ -15,6 +15,8 @@ public class JPAUtil {
 	}
 
 	public static void close() {
-		factory.close();
+		if (factory != null) {
+			factory.close();			
+		}			
 	}
 }

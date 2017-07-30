@@ -3,14 +3,14 @@ package persitencia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import av2.JPAUtil;
+import av2.EntityManagerFactoryWrapper;
 import entidade.Aluguel;
 
 public class AluguelDAO implements IAluguelDAO{
 
 	@Override
 	public boolean criar(Aluguel aluguel) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -23,7 +23,7 @@ public class AluguelDAO implements IAluguelDAO{
 
 	@Override
 	public boolean recuperar(Aluguel aluguel) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -35,7 +35,7 @@ public class AluguelDAO implements IAluguelDAO{
 
 	@Override
 	public boolean atualizar(Aluguel aluguel) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -47,7 +47,7 @@ public class AluguelDAO implements IAluguelDAO{
 
 	@Override
 	public boolean deletar(Aluguel aluguel) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 

@@ -1,4 +1,4 @@
-package av2;
+package cadastros;
 
 import java.awt.EventQueue;
 
@@ -18,6 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import av2.Motorista;
+import av2.Pessoa;
+import enums.Sexo;
+import persitencia.MotoristaDAO;
+import persitencia.PessoaDAO;
+
 import javax.swing.ButtonGroup;
 
 public class GUIMotorista {
@@ -89,12 +96,12 @@ public class GUIMotorista {
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					Date date;
 					try {
-						SEXO sexo = null;
+						Sexo sexo = null;
 						date = dateFormat.parse(dataNascimento.getText());
 						if (masculino.isSelected()) {
-							sexo = SEXO.Masculino;
+							sexo = Sexo.Masculino;
 						} else if (feminino.isSelected()) {
-							sexo = SEXO.Feminino;
+							sexo = Sexo.Feminino;
 						}
 						Motorista motorista = new Motorista(0, nome.getText().length() > 0 ? nome.getText() : null, date, cpf.getText().length() > 0 ? cpf.getText() : null, sexo, numeroCNH.getText().length() > 0 ? numeroCNH.getText() : null);						
 						if (motorista != null) {
@@ -138,7 +145,7 @@ public class GUIMotorista {
 									nome.setText(pessoa.getNome());
 									SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 									dataNascimento.setText(dateFormat.format(pessoa.getDataNascimento()));
-									if (pessoa.getSexo() == SEXO.Masculino) {
+									if (pessoa.getSexo() == Sexo.Masculino) {
 										masculino.setSelected(true);
 									} else {
 										feminino.setSelected(true);										
@@ -167,12 +174,12 @@ public class GUIMotorista {
 					try {					
 						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date date;
-						SEXO sexo;
+						Sexo sexo;
 						date = dateFormat.parse(dataNascimento.getText());
 						if (masculino.isSelected()) {
-							sexo = SEXO.Masculino;
+							sexo = Sexo.Masculino;
 						} else {
-							sexo = SEXO.Feminino;
+							sexo = Sexo.Feminino;
 						}
 						Motorista motorista = new Motorista(0, nome.getText().length() > 0 ? nome.getText() : null, date, cpf.getText().length() > 0 ? cpf.getText() : null, sexo, numeroCNH.getText().length() > 0 ? numeroCNH.getText() : null);
 						if (motorista != null) {

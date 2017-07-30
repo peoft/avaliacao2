@@ -1,6 +1,8 @@
-package av2;
+package persitencia;
 
 import java.sql.Connection;
+
+import av2.Funcionario;
 
 public interface IFuncionarioDAO {
 	Connection getConnection();

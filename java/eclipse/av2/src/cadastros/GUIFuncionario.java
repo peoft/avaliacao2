@@ -1,4 +1,4 @@
-package av2;
+package cadastros;
 
 import java.awt.EventQueue;
 
@@ -19,6 +19,12 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import av2.Funcionario;
+import av2.Pessoa;
+import enums.Sexo;
+import persitencia.FuncionarioDAO;
+import persitencia.PessoaDAO;
 
 public class GUIFuncionario {
 
@@ -85,12 +91,12 @@ public class GUIFuncionario {
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					Date date;
 					try {
-						SEXO sexo = null;
+						Sexo sexo = null;
 						date = dateFormat.parse(dataNascimento.getText());
 						if (masculino.isSelected()) {
-							sexo = SEXO.Masculino;
+							sexo = Sexo.Masculino;
 						} else if (feminino.isSelected()) {
-							sexo = SEXO.Feminino;
+							sexo = Sexo.Feminino;
 						}
 						Funcionario funcionario = new Funcionario(0, nome.getText().length() > 0 ? nome.getText() : null, date, cpf.getText().length() > 0 ? cpf.getText() : null, sexo, matricula.getText().length() > 0 ? matricula.getText() : null);						
 						if (funcionario != null) {
@@ -134,7 +140,7 @@ public class GUIFuncionario {
 									nome.setText(pessoa.getNome());
 									SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 									dataNascimento.setText(dateFormat.format(pessoa.getDataNascimento()));
-									if (pessoa.getSexo() == SEXO.Masculino) {
+									if (pessoa.getSexo() == Sexo.Masculino) {
 										masculino.setSelected(true);
 									} else {
 										feminino.setSelected(true);										
@@ -163,12 +169,12 @@ public class GUIFuncionario {
 					try {					
 						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date date;
-						SEXO sexo;
+						Sexo sexo;
 						date = dateFormat.parse(dataNascimento.getText());
 						if (masculino.isSelected()) {
-							sexo = SEXO.Masculino;
+							sexo = Sexo.Masculino;
 						} else {
-							sexo = SEXO.Feminino;
+							sexo = Sexo.Feminino;
 						}
 						Funcionario funcionario = new Funcionario(0, nome.getText().length() > 0 ? nome.getText() : null, date, cpf.getText().length() > 0 ? cpf.getText() : null, sexo, matricula.getText().length() > 0 ? matricula.getText() : null);
 						if (funcionario != null) {

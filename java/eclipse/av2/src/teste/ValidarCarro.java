@@ -2,14 +2,14 @@ package teste;
 
 import java.math.BigDecimal;
 
-import av2.Categoria;
-import av2.JPAUtil;
+import av2.EntityManagerFactoryWrapper;
 import entidade.Acessorio;
 import entidade.Carro;
 import entidade.CarroId;
 import entidade.Fabricante;
 import entidade.ModeloCarro;
 import entidade.ModeloCarroId;
+import enums.Categoria;
 import persitencia.AcessorioDAO;
 import persitencia.CarroDAO;
 import persitencia.FabricanteDAO;
@@ -51,7 +51,7 @@ public class ValidarCarro {
 			carro.setAcessorioId(acessorio.getId());
 			carro.setCarroId(carroId);
 			carroDAO.criar(carro);
-			JPAUtil.close();
+			EntityManagerFactoryWrapper.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

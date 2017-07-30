@@ -3,14 +3,14 @@ package persitencia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import av2.JPAUtil;
+import av2.EntityManagerFactoryWrapper;
 import entidade.ApoliceSeguro;
 
 public class ApoliceSeguroDAO implements IApoliceSeguroDAO {
 
 	@Override
 	public boolean criar(ApoliceSeguro apoliceSeguro) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -23,7 +23,7 @@ public class ApoliceSeguroDAO implements IApoliceSeguroDAO {
 
 	@Override
 	public boolean recuperar(ApoliceSeguro apoliceSeguro) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -35,7 +35,7 @@ public class ApoliceSeguroDAO implements IApoliceSeguroDAO {
 
 	@Override
 	public boolean atualizar(ApoliceSeguro apoliceSeguro) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -47,7 +47,7 @@ public class ApoliceSeguroDAO implements IApoliceSeguroDAO {
 
 	@Override
 	public boolean deletar(ApoliceSeguro apoliceSeguro) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 

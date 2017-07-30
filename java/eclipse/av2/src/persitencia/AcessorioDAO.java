@@ -3,14 +3,14 @@ package persitencia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import av2.JPAUtil;
+import av2.EntityManagerFactoryWrapper;
 import entidade.Acessorio;
 
 public class AcessorioDAO implements IAcessorioDAO {
 
 	@Override
 	public boolean criar(Acessorio acessorio) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 		manager.persist(acessorio);
@@ -21,7 +21,7 @@ public class AcessorioDAO implements IAcessorioDAO {
 
 	@Override
 	public boolean recuperar(Acessorio acessorio) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -35,7 +35,7 @@ public class AcessorioDAO implements IAcessorioDAO {
 
 	@Override
 	public boolean atualizar(Acessorio acessorio) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -47,7 +47,7 @@ public class AcessorioDAO implements IAcessorioDAO {
 
 	@Override
 	public boolean deletar(Acessorio acessorio) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 

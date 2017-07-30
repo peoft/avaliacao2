@@ -3,14 +3,14 @@ package persitencia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import av2.JPAUtil;
+import av2.EntityManagerFactoryWrapper;
 import entidade.Fabricante;
 
 public class FabricanteDAO implements IFabricanteDAO {
 
 	@Override
 	public boolean criar(Fabricante fabricante) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -22,7 +22,7 @@ public class FabricanteDAO implements IFabricanteDAO {
 
 	@Override
 	public boolean recuperar(Fabricante fabricante) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
@@ -34,7 +34,7 @@ public class FabricanteDAO implements IFabricanteDAO {
 
 	@Override
 	public boolean atualizar(Fabricante fabricante) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 				
@@ -45,7 +45,7 @@ public class FabricanteDAO implements IFabricanteDAO {
 
 	@Override
 	public boolean deletar(Fabricante fabricante) {
-		EntityManager manager = JPAUtil.getEntityManager();
+		EntityManager manager = EntityManagerFactoryWrapper.getEntityManager();
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 

@@ -5,9 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import av2.JPAUtil;
+import av2.EntityManagerFactoryWrapper;
 import av2.Motorista;
-import av2.MotoristaDAO;
 import entidade.Aluguel;
 import entidade.AluguelId;
 import entidade.ApoliceSeguro;
@@ -16,6 +15,7 @@ import entidade.CarroId;
 import persitencia.AluguelDAO;
 import persitencia.ApoliceSeguroDAO;
 import persitencia.CarroDAO;
+import persitencia.MotoristaDAO;
 
 public class ValidarAluguel {
 	public static void main(String[] args) {
@@ -67,7 +67,7 @@ public class ValidarAluguel {
 				}
 			}
 
-			JPAUtil.close();
+			EntityManagerFactoryWrapper.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

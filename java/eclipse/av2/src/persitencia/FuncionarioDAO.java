@@ -1,4 +1,4 @@
-package av2;
+package persitencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import av2.ConnectionFactory;
+import av2.Funcionario;
 	
 public class FuncionarioDAO implements IFuncionarioDAO {
 

@@ -1,4 +1,4 @@
-package av2;
+package persitencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,9 @@ import java.sql.SQLTimeoutException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import av2.ConnectionFactory;
+import av2.Motorista;
 	
 public class MotoristaDAO implements IMotoristaDAO {
 

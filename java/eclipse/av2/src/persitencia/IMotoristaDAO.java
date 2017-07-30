@@ -1,6 +1,8 @@
-package av2;
+package persitencia;
 
 import java.sql.Connection;
+
+import av2.Motorista;
 
 public interface IMotoristaDAO {
 	Connection getConnection();

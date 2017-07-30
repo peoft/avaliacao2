@@ -1,4 +1,4 @@
-package av2;
+package cadastros;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -18,6 +18,12 @@ import javax.swing.SwingConstants;
 
 import java.awt.Component;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import av2.Motorista;
+import av2.Pessoa;
+import persitencia.MotoristaDAO;
+import persitencia.PessoaDAO;
+
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;

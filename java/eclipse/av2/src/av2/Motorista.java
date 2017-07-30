@@ -2,8 +2,10 @@ package av2;
 
 import java.util.Date;
 
+import enums.Sexo;
+
 public class Motorista extends Pessoa {
-	public Motorista(int id, String nome, Date dataNascimento, String cpf, SEXO sexo, String numeroCNH) {
+	public Motorista(int id, String nome, Date dataNascimento, String cpf, Sexo sexo, String numeroCNH) {
 		super(id, nome, dataNascimento, cpf, sexo);
 		this.numeroCNH = numeroCNH;
 		// TODO Auto-generated constructor stub

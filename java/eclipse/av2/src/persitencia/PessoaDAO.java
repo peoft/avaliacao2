@@ -1,4 +1,4 @@
-package av2;
+package persitencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.SQLTimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import av2.ConnectionFactory;
+import av2.Pessoa;
+import enums.Sexo;
 
 public class PessoaDAO implements IPessaoDAO {
 
@@ -91,9 +95,9 @@ public class PessoaDAO implements IPessaoDAO {
 					String sexo;
 					sexo = resultSet.getString("sexo");
 					if (sexo.equalsIgnoreCase("Masculino")) {
-						pessoa.setSexo(SEXO.Masculino);
+						pessoa.setSexo(Sexo.Masculino);
 					} else {
-						pessoa.setSexo(SEXO.Feminino);
+						pessoa.setSexo(Sexo.Feminino);
 					}
 				}				
 				ret = true;

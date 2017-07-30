@@ -12,7 +12,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import av2.Categoria;
+import enums.Categoria;
 
 @Entity
 public class ModeloCarro {
