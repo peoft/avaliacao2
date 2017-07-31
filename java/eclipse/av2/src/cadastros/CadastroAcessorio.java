@@ -65,7 +65,7 @@ public class CadastroAcessorio extends Cadastro {
 	}
 
 	@Override
-	public void atualizar(boolean novoValor, Acessorio original) {
+	public void atualizar(boolean novoValor, Object original) {
 		try {
 			System.out.print("Descrição:");			
 			ler = new Scanner(System.in);
@@ -85,7 +85,7 @@ public class CadastroAcessorio extends Cadastro {
 					}
 				} else {
 					if (result == false) {
-						if (acessorioDAO.atualizar(original, acessorio) == true) {
+						if (acessorioDAO.atualizar((Acessorio) original, acessorio) == true) {
 							System.out.println("Acessório atualizado com sucesso!");
 						} else {
 							System.out.println("Acessório não foi atualizado!");
